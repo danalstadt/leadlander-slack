@@ -1,0 +1,24 @@
+{
+  "name": "leadlander-slack",
+  "version": "1.0.0",
+  "description": "Integrates leadlander's incoming lead notifications with Slack",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:danalstadt/leadlander-slack.git"
+  },
+  "author": "Dan Alstadt <danalstadt@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danalstadt/leadlander-slack/issues"
+  },
+  "homepage": "https://github.com/danalstadt/leadlander-slack",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "mailin": "^1.0.0",
+    "node-slackr": "saary/node-slackr"
+  }
+}

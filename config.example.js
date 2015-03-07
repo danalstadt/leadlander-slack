@@ -1,3 +1,4 @@
+//Copy this to config.js and edit to your liking
 module.exports = {
     webhook: 'https://hooks.slack.com/services/something/something',
     channel: '#some-channel',

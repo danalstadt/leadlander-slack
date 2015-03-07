@@ -13,6 +13,12 @@ config.icon ? slackConfig.icon_url = config.icon : null;
 
 var slack = new Slack(config.webhook, slackConfig);
 
-slack.notify("Testing message", function(err, result){
-    console.log(err,result);
+mailin.start({
+    port: 25,
+    disableWebhook: true,
+    requireAuthentication: false
+});
+
+mailin.on('message', function (connection, data, content) {
+    console.log(data);
 });

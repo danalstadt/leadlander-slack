@@ -27,10 +27,10 @@ mailin.on('message', function (connection, data, content) {
         var $ = cheerio.load(data.html);
 
         var companyName = ($('table:nth-child(2) tr:nth-child(1) td:nth-child(2) a')).eq(0).text();
-        console.log(companyName);
+        console.log('company: ', companyName);
 
         var link = $('a[href*="ssl.leadlander.com/leads"]').eq(0).attr('href');
-        console.log(link);
+        console.log('link: ', link);
 
     }
 

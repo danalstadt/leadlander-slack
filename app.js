@@ -18,7 +18,8 @@ var slack = new Slack(config.webhook, slackConfig);
 mailin.start({
     port: 25,
     disableWebhook: true,
-    requireAuthentication: false
+    requireAuthentication: false,
+    logLevel: 'warn'
 });
 
 mailin.on('message', function (connection, data, content) {
@@ -28,20 +29,23 @@ mailin.on('message', function (connection, data, content) {
             var $ = cheerio.load(data.html);
             var companyName = $('table a').eq(0).text().replace(/\n/, '').replace(/(\s)+/g, ' ');
             var companyLink = $('table a').eq(0).attr('href');
-            var leadLink = $('table a').eq(2).attr('href');
+            var leadLink = $('table a').eq(2).attr('href').replace(/\.+/g, '.');
 
-            console.log('company:', companyName);
-            console.log('company link:', companyLink);
-            console.log('link:', leadLink);
-
-            slack.notify(format(
+            var message = format(
                 'Someone from <{companyLink}|{company}> landed on the site. <{link}|View on LeadLander>',
                 {
                     companyLink: companyLink,
                     company: companyName,
                     link: leadLink
                 }
-            ));
+            );
+
+            console.log('company:', companyName);
+            console.log('company link:', companyLink);
+            console.log('link:', leadLink);
+            console.log('message:', message);
+
+            slack.notify(message);
         } catch (e) {
             console.error(e);
         }

@@ -1,5 +1,6 @@
 var mailin = require('mailin');
 var Slack = require('node-slackr');
+var cheerio = require('cheerio');
 
 var config = require('./config');
 

@@ -32,7 +32,7 @@ mailin.on('message', function (connection, data, content) {
             var leadLink = $('table a').eq(2).attr('href').replace(/\.+/g, '.');
 
             var message = format(
-                'Someone from <{companyLink}|{company}> landed on the site. <{link}|View on LeadLander>',
+                'Someone from <{companyLink}|{company}> landed on the site.',
                 {
                     companyLink: companyLink,
                     company: companyName,

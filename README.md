@@ -6,9 +6,11 @@ Integrates LeadLander leads with Slack via incoming email. Receives and parses i
 
 Clone the repo and copy the default config:
 
-`git clone https://github.com/danalstadt/leadlander-slack.git`
-
-`cp config.example.js config.js`
+```
+git clone https://github.com/danalstadt/leadlander-slack.git
+npm install
+cp config.example.js config.js
+```
 
 Edit the default configuration to your liking. Then start the app (must be run as root on Linux to use port 25 for SMTP):
 

@@ -1,6 +1,7 @@
 var mailin = require('mailin');
 var Slack = require('node-slackr');
 var cheerio = require('cheerio');
+var format = require('string-format');
 
 var config = require('./config');
 
@@ -22,19 +23,28 @@ mailin.start({
 
 mailin.on('message', function (connection, data, content) {
     if (data.headers.subject.indexOf('Alert:') != -1) {
-        console.log(data);
+        try {
+            //console.log(data);
+            var $ = cheerio.load(data.html);
+            var companyName = $('table a').eq(0).text().replace(/\n/, '').replace(/(\s)+/g, ' ');
+            var companyLink = $('table a').eq(0).attr('href');
+            var leadLink = $('table a').eq(2).attr('href');
 
-        var $ = cheerio.load(data.html);
+            console.log('company:', companyName);
+            console.log('company link:', companyLink);
+            console.log('link:', leadLink);
 
-        var companyName = $('table a').eq(0).text().replace(/\n/, '').replace(/(\s)+/g, ' ');
-        var companyLink = $('table a').eq(0).attr('href');
-        var leadLink = $('table a').eq(2).attr('href');
-
-        console.log('company: ', companyName);
-        console.log('company link: ', companyLink);
-        console.log('link: ', leadLink);
+            slack.notify(format(
+                'Someone from <{companyLink}|{company}> landed on the site. <{link}|View on LeadLander>',
+                {
+                    companyLink: companyLink,
+                    company: companyName,
+                    link: leadLink
+                }
+            ));
+        } catch (e) {
+            console.error(e);
+        }
 
     }
-
-
 });

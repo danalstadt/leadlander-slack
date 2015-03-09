@@ -20,5 +20,18 @@ mailin.start({
 });
 
 mailin.on('message', function (connection, data, content) {
-    console.log(data);
+    if (data.headers.subject.indexOf('Alert:') != -1) {
+        console.log(data);
+
+        var $ = cheerio.load(data.html);
+
+        var companyName = ($('table:nth-child(2) tr:nth-child(1) td:nth-child(2) a')).text();
+        console.log(companyName);
+
+        var link = $('a[href*="ssl.leadlander.com/leads"]').attr('href');
+        console.log(link);
+
+    }
+
+
 });

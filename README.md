@@ -1,6 +1,8 @@
 # leadlander-slack
 
-Integrates LeadLander leads with Slack via incoming email. Receives and parses incoming email messages with [Mailin](https://github.com/Flolagale/mailin), as LeadLander has no feeds/webhooks/etc that can be used directly. See Mailin's docs for more information about getting that configured.
+Integrates LeadLander leads with Slack via incoming email.
+
+This app and parses incoming email messages with [Mailin](https://github.com/Flolagale/mailin), as LeadLander has no feeds/webhooks/etc that can be used directly, and posts a message to a Slack #channel of your choice. See Mailin's docs for more information about getting incoming email configured. You should configure LeadLander to send you instant email alerts, and forward them to wherever your application is running.
 
 ## Installation
 

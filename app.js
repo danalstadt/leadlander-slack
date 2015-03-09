@@ -26,11 +26,13 @@ mailin.on('message', function (connection, data, content) {
 
         var $ = cheerio.load(data.html);
 
-        var companyName = ($('table:nth-child(2) tr:nth-child(1) td:nth-child(2) a')).eq(0).text();
-        console.log('company: ', companyName);
+        var companyName = $('table a').eq(0).text().replace(/\n/, '').replace(/(\s)+/g, ' ');
+        var companyLink = $('table a').eq(0).attr('href');
+        var leadLink = $('table a').eq(2).attr('href');
 
-        var link = $('a[href*="ssl.leadlander.com/leads"]').eq(0).attr('href');
-        console.log('link: ', link);
+        console.log('company: ', companyName);
+        console.log('company link: ', companyLink);
+        console.log('link: ', leadLink);
 
     }
 
